@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Online shopping</title>
+    <link rel="stylesheet" href="style.css">
+    
+        <script>
+  function fun() {
+    var full = document.getElementById('full');
+    var toggle = document.querySelector('.toggle');
+  
+      var menu=document.querySelector('.menu')
+    full.classList.toggle('active');
+    toggle.classList.toggle('active');
+    menu.classList.toggle('active'); 
+  }
+</script>
+
+       
+</head>
+<body>
+    <section id="full" class="">
+        <video src="182137-867762290_tiny.mp4" muted loop autoplay></video>
+        <div class="overlay"></div>
+        <header >
+          <div class="top">
+            <h1>More</h1>
+            <h1 class="toggle " onclick="fun()" ></h1>
+          </div>
+            <h2 class="head">Be healthy</h2>
+            
+        </header>
+        <div class="text">
+            <h2>Be happy</h2>
+            <h2>Make farmers happy</h2>
+            <p class="para">Sustainable harvesting methods significantly improve environmental health.
+
+
+               <br> They protect soil from erosion and degradation.
+                
+                <br>Moreover, these practices preserve water quality and availability.
+                
+                <br>Employing these techniques encourages biodiversity in farming systems.
+                
+                
+               <br> As a result, ecosystems remain balanced and resilient.</p>
+               <a href="#" class="explore-btn">EXPLORE</a>
+
+            
+                <ul>
+                    <li id="icon"><a href="#"class="fa fa-facebook"></a></li>
+                    <li id="icon"><a href="#"class="fa fa-twitter"></a></li>
+                    <li id="icon"><a href="#"class="fa fa-instagram"></a></li>
+                </ul>
+        </div>
+        </section>
+        <div class="menu">
+            <ul class="innermenu " >
+                <li><a id="h" class="menustyle" href="index.html">Home</a></li>
+                <li><a class="menustyle" href="about.html">About</a></li>
+                <!--li><a class="menustyle"href="#">Shopping</a></li-->
+                <li><a class="menustyle" href="game.html">Game</a></li>
+                <li><a class="menustyle" href="contact.html">Contact</a></li>
+            </ul>
+
+        </div >
+</body>
+</html>

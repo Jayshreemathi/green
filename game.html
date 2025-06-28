@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <section class="game">
+   
+     <header>
+         <div class="gamehead">
+    <h1>More</h1>
+    <h1 class="toggle"></h1>
+    <h2 class="head">Be healthy</h2>
+    </div>
+  </header>
+  
+   <div class="gamecon">
+       <h3>Lets play a game 😀😀😀</h3>
+       <p>Give a random capital letter from alphabets as an input. And you will get to know what are the veggies or fruits available in our shopping.</p>
+       <input type="text" id="inputLetter" placeholder="Enter a letter (A-D)">
+       <button onclick="img()">click</button>
+   </div>
+   <div class="gameimg">
+     <img src="apple.jpeg" alt="">
+     <img src="aspar.jpg" alt="">
+     <img src="banana.jpg" alt="">
+     <img src="beet.jpg" alt="">
+     <img src="flower.jpg" alt="">
+     <img src="raw.webp" alt="">
+     <img src="carrot.jpg" alt="">
+     <img src="cucumber.jpeg" alt="">
+     <img src="dragon.jpg" alt="">
+     <img src="drum.jpg" alt="">
+     <img src="" alt="">
+   </div>
+   
+  </section>
+  
+
+
+
+
+   <div class="menu">
+    <ul class="innermenu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <!--li><a href="#">Shop</a></li-->
+      <li><a href="game.html">Game</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.querySelector(".toggle");
+      const menu = document.querySelector(".menu");
+      const game=document.querySelector(".game")
+      toggle.addEventListener("click", () => {
+        toggle.classList.toggle("active");
+        menu.classList.toggle("active");
+        game.classList.toggle("active");
+      });
+    });
+   function img(){
+    const input=document.getElementById("inputLetter").value.toUpperCase();
+   const images=document.querySelectorAll(".gameimg img");
+   const gameimg=document.querySelector(".gameimg");
+   images.forEach((image)=>{
+      image.style.display="none";
+   })
+   switch(input){
+    case 'A':
+        images[0].style.display="block";
+        images[1].style.display="block";
+        gameimg.style.display="flex";
+        gameimg.style.flexWrap="wrap";
+        gameimg.style.justifyContent="space-around";
+       
+        
+        ;
+        break;
+     case 'B':
+        images[2].style.display="block";
+        images[3].style.display="block";
+        images[4].style.display="block";
+        images[5].style.display="block";
+         gameimg.style.display="flex";
+        gameimg.style.flexWrap="wrap";
+        gameimg.style.justifyContent="space-around";
+        break;
+     case 'C':
+        images[6].style.display="block";
+        images[7].style.display="block";
+         gameimg.style.display="flex";
+        gameimg.style.flexWrap="wrap";
+        gameimg.style.justifyContent="space-around";
+        break;
+        case 'D':
+  images[8].style.display = "block";
+  images[9].style.display = "block";
+  gameimg.style.display = "flex";
+  gameimg.style.flexWrap = "wrap";
+  gameimg.style.justifyContent = "space-around";
+  break;
+    default:
+      alert("Please enter a valid letter (A-D)");
+      gameimg.style.display="none";
+      break;
+   }
+   }
+   
+
+</script>
+</body>
+</html>

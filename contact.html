@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <section class="contactlist">
+         <header>
+           
+           <h1>More</h1>
+           <h1 class="toggle"></h1>
+           <h2 class="head">Be healthy</h2>
+
+         </header>
+         <div class="contactform">
+            <h2>Contact us</h2>
+            <form action="">
+               <label for="name">Name:</label>
+               <input type="text" id="name" name="name" placeholder="Enter your name..." required><br>
+               <label for="email">Email:</label>
+               <input type="email" id="email" name="email" placeholder="Enter your email..."required><br>
+               <label for="message">Message:</label>
+               <textarea  maxlength="100" name="message" id="message" placeholder="Enter your thoughts..."></textarea><br>
+               <button type="submit">Submit</button>
+               
+            </form>
+         </div>
+  
+        
+
+    </section>
+     <div class="menu">
+    <ul class="innermenu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <!--li><a href="#">Shop</a></li-->
+      <li><a href="game.html">Game</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.querySelector(".toggle");
+      const menu = document.querySelector(".menu");
+      const contactlist=document.querySelector(".contactlist");
+      toggle.addEventListener("click", () => {
+        toggle.classList.toggle("active");
+        menu.classList.toggle("active");
+       contactlist.classList.toggle("active");
+      });
+    });
+</script>
+<script>
+document.querySelector("form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+
+  const formData = {
+    name,
+    email,
+    message,
+    timestamp: new Date().toLocaleString()
+  };
+
+  // Get existing data or initialize an empty array
+  const existing = JSON.parse(localStorage.getItem("contactSubmissions")) || [];
+
+  // Add the new form data
+  existing.push(formData);
+
+  // Save it back to localStorage
+  localStorage.setItem("contactSubmissions", JSON.stringify(existing));
+
+  alert("Form data saved locally!");
+  document.querySelector("form").reset(); // Clear form fields
+});
+</script>
+
+
+</body>
+</html>

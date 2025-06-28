@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>About green</title>
+     
+ 
+
+</head>
+<body>
+    <section class="about">
+  <div class="animatedimages">
+     
+  </div> <!-- This is background -->
+  
+  <header>
+    <h1>More</h1>
+    <h1 class="toggle"></h1>
+    <h2 class="head">Be healthy</h2>
+  </header>
+  <div class="greenerblock">
+    <h1 id="greener">Go greener Today!</h1>
+  </div>
+ 
+  
+  <div class="container">
+      <div class="images">
+        <img src="th (1).jpg" alt="">
+        <p>Timely harvest brings peak flavor and nutrition.
+Freshly picked veggies are nature’s perfect gift.</p>
+    </div>
+    <div class="images">
+        <img src="th (2).jpg" alt="e">
+        <p>Healthy soil yields healthy vegetables.
+Nurture the land, and it nourishes you back.</p>
+    </div>
+    <div class="images">
+        <img src="th (3).jpg" alt="">
+        <p>Local farmers bring freshness to your plate.
+Support their work for a greener future.
+
+</p>
+    </div>
+    <div class="images">
+        <img src="th (4).jpg" alt="">
+        <p>Every vegetable has a harvest window.
+Picking it right ensures quality and taste.</p>
+    </div>
+    <div class="images">
+        <img src="th (5).jpg" alt="">
+        <p>Sustainable harvesting protects the planet.
+Eco-friendly methods keep farms thriving.</p>
+    </div>
+    <div class="images">
+        <img src="th (6).jpg" alt="">
+        <p>From seed to harvest, care is the key.
+That love shows in every vegetable you eat.</p>
+    </div>
+  </div>
+    </section>
+    <div class="contact">
+       <h1>Contact us</h1>
+        <p>For enquires mail to <a href="#">www.behealthy.com</a></p>
+    </div>
+  <div class="menu">
+    <ul class="innermenu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <!--li><a href="#">Shop</a></li-->
+      <li><a href="game.html">Game</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.querySelector(".toggle");
+      const menu = document.querySelector(".menu");
+      const about=document.querySelector(".about");
+      toggle.addEventListener("click", () => {
+        toggle.classList.toggle("active");
+        menu.classList.toggle("active");
+        about.classList.toggle("active");
+      });
+    });
+</script>
+</body>
+
+</html>
