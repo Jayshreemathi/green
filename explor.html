@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Explore Plants</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #e7f7e3;
+    }
+    h1 {
+      text-align: center;
+      color: #2d6a4f;
+    }
+    .search-box {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .search-box input {
+      padding: 10px;
+      width: 250px;
+      border: 2px solid #95d5b2;
+      border-radius: 5px;
+    }
+    .search-box button {
+      padding: 10px 15px;
+      background-color: #52b788;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+    .results {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      width: 280px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #40916c;
+    }
+  </style>
+</head>
+<body>
+  <h1>Explore Plants</h1>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Enter plant name..." />
+    <button onclick="searchPlant()">Search</button>
+  </div>
+
+  <div class="results" id="resultsContainer">
+    <!-- Plant cards will appear here -->
+  </div>
+
+  <script>
+    function searchPlant() {
+      const query = document.getElementById('searchInput').value.trim();
+      const container = document.getElementById('resultsContainer');
+      container.innerHTML = ''; // Clear previous results
+
+      if (!query) {
+        alert("Please enter a plant name.");
+        return;
+      }
+
+      fetch(`https://openfarm.cc/api/v1/crops/?filter=${query}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.data.length === 0) {
+            container.innerHTML = "<p>No plants found.</p>";
+            return;
+          }
+
+          data.data.forEach(item => {
+            const attr = item.attributes;
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+              <h3>${attr.name}</h3>
+              <p><strong>Sunlight:</strong> ${attr.sun_requirements || 'N/A'}</p>
+              <p><strong>Sowing Method:</strong> ${attr.sowing_method || 'N/A'}</p>
+              <p>${attr.description || 'No description available.'}</p>
+            `;
+            container.appendChild(card);
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching plant data:", error);
+          container.innerHTML = "<p>Error fetching data.</p>";
+        });
+    }
+  </script>
+</body>
+</html>

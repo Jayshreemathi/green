@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Explore Plants</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0fdf4;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #2f855a;
+    }
+    .search-box {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .search-box input {
+      padding: 10px;
+      width: 250px;
+      border: 2px solid #c6f6d5;
+      border-radius: 5px;
+    }
+    .search-box button {
+      padding: 10px 15px;
+      background-color: #38a169;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+    .results {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      width: 280px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .card h3 {
+      margin: 10px 0 5px;
+      color: #2f855a;
+    }
+    .card p {
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Explore Plants</h1>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Enter plant name..." />
+    <button onclick="searchPlant()">Search</button>
+  </div>
+
+  <div class="results" id="resultsContainer">
+    <!-- Results will appear here -->
+  </div>
+
+  <script>
+    const API_TOKEN = "QsalOZWocweRZaED9kT3tBwIOMkRY58PYlRVBZx8ajc"; // Replace with your actual token
+
+    function searchPlant() {
+      const query = document.getElementById('searchInput').value.trim();
+      const container = document.getElementById('resultsContainer');
+      container.innerHTML = '';
+
+      if (!query) {
+        alert("Please enter a plant name.");
+        return;
+      }
+
+      const url = `https://corsproxy.io/?https://trefle.io/api/v1/plants/search?token=${API_TOKEN}&q=${encodeURIComponent(query)}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          if (!data.data || data.data.length === 0) {
+            container.innerHTML = "<p>No plants found.</p>";
+            return;
+          }
+
+          data.data.forEach(plant => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+              <img src="${plant.image_url || 'https://via.placeholder.com/300x200?text=No+Image'}" alt="plant image" />
+              <h3>${plant.common_name || "Unknown Common Name"}</h3>
+              <p><em>${plant.scientific_name || "Unknown Scientific Name"}</em></p>
+            `;
+            container.appendChild(card);
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching plant data:", error);
+          container.innerHTML = "<p style='color:red;'>Error fetching plant data.</p>";
+        });
+    }
+  </script>
+</body>
+</html>
