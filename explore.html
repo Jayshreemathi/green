@@ -1,117 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Explore Plants</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f0fdf4;
+      font-family: 'Arial', sans-serif;
       padding: 20px;
+      background-color: #e6f5ea;
     }
     h1 {
       text-align: center;
-      color: #2f855a;
+      color: #2d6a4f;
     }
-    .search-box {
-      text-align: center;
-      margin: 30px 0;
-    }
-    .search-box input {
+    input, button {
       padding: 10px;
-      width: 250px;
-      border: 2px solid #c6f6d5;
-      border-radius: 5px;
+      font-size: 16px;
+      margin: 10px 5px;
     }
-    .search-box button {
-      padding: 10px 15px;
-      background-color: #38a169;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      margin-left: 5px;
-      cursor: pointer;
+    button{
+        background-color: #2d6a4f;
     }
-    .results {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+    #plantResults {
+      margin-top: 20px;
     }
-    .card {
-      background: white;
+    .plant-card {
+      border: 1px solid #ccc;
       padding: 15px;
-      border-radius: 10px;
-      width: 280px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
+      margin-bottom: 10px;
+      background-color: #ffffff;
       border-radius: 8px;
     }
-    .card h3 {
-      margin: 10px 0 5px;
-      color: #2f855a;
-    }
-    .card p {
-      font-size: 14px;
-      color: #555;
+    .plant-card h3 {
+      margin: 0 0 5px 0;
+      color: #1b4332;
     }
   </style>
 </head>
 <body>
-  <h1>Explore Plants</h1>
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Enter plant name..." />
+
+  <h1>🌱 Explore Plants</h1>
+<center>
+  <div>
+    <input type="text" id="plantInput" placeholder="Enter plant name (e.g., basil)" />
     <button onclick="searchPlant()">Search</button>
   </div>
+  
 
-  <div class="results" id="resultsContainer">
-    <!-- Results will appear here -->
-  </div>
+  <div id="plantResults"></div>
+  </center>
 
   <script>
-    const API_TOKEN = "QsalOZWocweRZaED9kT3tBwIOMkRY58PYlRVBZx8ajc"; // Replace with your actual token
-
-    function searchPlant() {
-      const query = document.getElementById('searchInput').value.trim();
-      const container = document.getElementById('resultsContainer');
-      container.innerHTML = '';
+    async function searchPlant() {
+      const query = document.getElementById('plantInput').value.trim();
+      const resultsDiv = document.getElementById('plantResults');
+      resultsDiv.innerHTML = '';
 
       if (!query) {
         alert("Please enter a plant name.");
         return;
       }
 
-      const url = `https://corsproxy.io/?https://trefle.io/api/v1/plants/search?token=${API_TOKEN}&q=${encodeURIComponent(query)}`;
+      try {
+        const response = await fetch(`/.netlify/functions/trefle-proxy?q=${encodeURIComponent(query)}`);
+        const data = await response.json();
 
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          if (!data.data || data.data.length === 0) {
-            container.innerHTML = "<p>No plants found.</p>";
-            return;
-          }
+        if (!data || !data.data || data.data.length === 0) {
+          resultsDiv.innerHTML = `<p>No plants found for "<strong>${query}</strong>".</p>`;
+          return;
+        }
 
-          data.data.forEach(plant => {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `
-              <img src="${plant.image_url || 'https://via.placeholder.com/300x200?text=No+Image'}" alt="plant image" />
-              <h3>${plant.common_name || "Unknown Common Name"}</h3>
-              <p><em>${plant.scientific_name || "Unknown Scientific Name"}</em></p>
-            `;
-            container.appendChild(card);
-          });
-        })
-        .catch(error => {
-          console.error("Error fetching plant data:", error);
-          container.innerHTML = "<p style='color:red;'>Error fetching plant data.</p>";
+        data.data.forEach(plant => {
+          const plantDiv = document.createElement('div');
+          plantDiv.className = 'plant-card';
+          plantDiv.innerHTML = `
+            <h3>${plant.common_name || "Unnamed Plant"}</h3>
+            <p><strong>Scientific Name:</strong> ${plant.scientific_name}</p>
+            <p><strong>Year Discovered:</strong> ${plant.year || "Unknown"}</p>
+          `;
+          resultsDiv.appendChild(plantDiv);
         });
+
+      } catch (err) {
+        console.error("Error fetching plant data:", err);
+        resultsDiv.innerHTML = `<p>❌ Error retrieving plant data. Try again later.</p>`;
+      }
     }
   </script>
+
 </body>
 </html>
