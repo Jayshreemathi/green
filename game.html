@@ -1,118 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <section class="game">
-   
-     <header>
-         <div class="gamehead">
-    <h1>More</h1>
-    <h1 class="toggle"></h1>
-    <h2 class="head">Be healthy</h2>
+  <section class="game">
+    <header>
+      <div class="gamehead">
+        <h1>More</h1>
+        <h1 class="toggle"></h1>
+        <h2 class="head">Be healthy</h2>
+      </div>
+    </header>
+
+    <div class="gamecon">
+      <h3>Let’s play a game 😀😀😀</h3>
+      <p>Give a random capital letter from alphabets as input, and you will see the fruits or veggies available.</p>
+      <input type="text" id="inputLetter" placeholder="Enter a letter (A-Z)">
+      <button onclick="img()">Click</button>
+      <button onclick="randomImg()">Surprise me!</button>
+
+      <div class="gameimg">
+        <div class="item"><img src="apple.jpeg" alt="Apple" data-letter="A"></div>
+        <div class="item"><img src="aspar.jpg" alt="Asparagus" data-letter="A"></div>
+        <div class="item"><img src="banana.jpg" alt="Banana" data-letter="B"></div>
+        <div class="item"><img src="beet.jpg" alt="Beetroot" data-letter="B"></div>
+        <div class="item"><img src="bottle.jpeg" alt="Bottle Guard" data-letter="B"></div>
+        <div class="item"><img src="carrot.jpg" alt="Carrot" data-letter="C"></div>
+        <div class="item"><img src="cucumber.jpeg" alt="Cucumber" data-letter="C"></div>
+        <div class="item"><img src="dragon.jpg" alt="Dragon Fruit" data-letter="D"></div>
+        <div class="item"><img src="drum.jpg" alt="Drumstick" data-letter="D"></div>
+        <div class="item"><img src="goose.jpeg" alt="Goose Berries" data-letter="G"></div>
+        <div class="item"><img src="jackfruit.jpg" alt="Jack Fruit" data-letter="J"></div>
+        <div class="item"><img src="lime.jpeg" alt="Lime" data-letter="L"></div>
+        <div class="item"><img src="MANGO.jpg" alt="Mango" data-letter="M"></div>
+        <div class="item"><img src="rawmango.jpeg" alt="Raw Mango" data-letter="M"></div>
+        <div class="item"><img src="onion.jpg" alt="Onion" data-letter="O"></div>
+        <div class="item"><img src="orange.jpeg" alt="Orange" data-letter="O"></div>
+        <div class="item"><img src="papaya.jpg" alt="Papaya" data-letter="P"></div>
+        <div class="item"><img src="pea.jpg" alt="Pea" data-letter="P"></div>
+        <div class="item"><img src="rawmango.jpeg" alt="Raw Mango" data-letter="R"></div>
+        <div class="item"><img src="snakeguard.jpg" alt="Snake Guard" data-letter="S"></div>
+        <div class="item"><img src="tomato.jpeg" alt="Tomato" data-letter="T"></div>
+      </div>
     </div>
-  </header>
-  
-   <div class="gamecon">
-       <h3>Lets play a game 😀😀😀</h3>
-       <p>Give a random capital letter from alphabets as an input. And you will get to know what are the veggies or fruits available in our shopping.</p>
-       <input type="text" id="inputLetter" placeholder="Enter a letter (A-D)">
-       <button onclick="img()">click</button>
-   </div>
-   <div class="gameimg">
-     <img src="apple.jpeg" alt="">
-     <img src="aspar.jpg" alt="">
-     <img src="banana.jpg" alt="">
-     <img src="beet.jpg" alt="">
-     <img src="flower.jpg" alt="">
-     <img src="raw.webp" alt="">
-     <img src="carrot.jpg" alt="">
-     <img src="cucumber.jpeg" alt="">
-     <img src="dragon.jpg" alt="">
-     <img src="drum.jpg" alt="">
-     <img src="" alt="">
-   </div>
-   
   </section>
-  
 
-
-
-
-   <div class="menu">
+  <div class="menu">
     <ul class="innermenu">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <!--li><a href="#">Shop</a></li-->
       <li><a href="game.html">Game</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const toggle = document.querySelector(".toggle");
       const menu = document.querySelector(".menu");
-      const game=document.querySelector(".game")
+      const game = document.querySelector(".game");
       toggle.addEventListener("click", () => {
         toggle.classList.toggle("active");
         menu.classList.toggle("active");
         game.classList.toggle("active");
       });
-    });
-   function img(){
-    const input=document.getElementById("inputLetter").value.toUpperCase();
-   const images=document.querySelectorAll(".gameimg img");
-   const gameimg=document.querySelector(".gameimg");
-   images.forEach((image)=>{
-      image.style.display="none";
-   })
-   switch(input){
-    case 'A':
-        images[0].style.display="block";
-        images[1].style.display="block";
-        gameimg.style.display="flex";
-        gameimg.style.flexWrap="wrap";
-        gameimg.style.justifyContent="space-around";
-       
-        
-        ;
-        break;
-     case 'B':
-        images[2].style.display="block";
-        images[3].style.display="block";
-        images[4].style.display="block";
-        images[5].style.display="block";
-         gameimg.style.display="flex";
-        gameimg.style.flexWrap="wrap";
-        gameimg.style.justifyContent="space-around";
-        break;
-     case 'C':
-        images[6].style.display="block";
-        images[7].style.display="block";
-         gameimg.style.display="flex";
-        gameimg.style.flexWrap="wrap";
-        gameimg.style.justifyContent="space-around";
-        break;
-        case 'D':
-  images[8].style.display = "block";
-  images[9].style.display = "block";
-  gameimg.style.display = "flex";
-  gameimg.style.flexWrap = "wrap";
-  gameimg.style.justifyContent = "space-around";
-  break;
-    default:
-      alert("Please enter a valid letter (A-D)");
-      gameimg.style.display="none";
-      break;
-   }
-   }
-   
 
-</script>
+      // Hide all images initially
+      document.querySelectorAll(".gameimg .item").forEach(item => {
+        item.style.display = "none";
+      });
+      document.querySelector(".gameimg").style.display = "none";
+    });
+
+    function img() {
+      const input = document.getElementById("inputLetter").value.toUpperCase();
+      const items = document.querySelectorAll(".gameimg .item");
+      const gameimg = document.querySelector(".gameimg");
+
+      // Hide all images
+      items.forEach(item => {
+        item.style.display = "none";
+        let oldCaption = item.querySelector("p");
+        if (oldCaption) oldCaption.remove(); // remove old captions
+      });
+
+      if (!/^[A-Z]$/.test(input)) {
+        alert("Please enter a valid letter (A-Z)");
+        return;
+      }
+
+      let found = false;
+      items.forEach(item => {
+        const img = item.querySelector("img");
+        if (img.dataset.letter === input) {
+          item.style.display = "flex";
+          item.style.flexDirection = "column";
+          item.style.alignItems = "center";
+
+          const caption = document.createElement("p");
+          caption.textContent = img.alt;
+          item.appendChild(caption);
+          found = true;
+        }
+      });
+
+      gameimg.style.display = found ? "flex" : "none";
+      if (found) {
+        gameimg.style.flexWrap = "wrap";
+        gameimg.style.justifyContent = "center";
+        gameimg.style.gap = "20px";
+      } else {
+        alert(`No fruits/veggies found for letter ${input}`);
+      }
+
+      // Clear input after search
+      document.getElementById("inputLetter").value = "";
+    }
+
+    function randomImg() {
+      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const randomLetter = letters[Math.floor(Math.random() * letters.length)];
+      document.getElementById("inputLetter").value = randomLetter;
+      img();
+    }
+  </script>
 </body>
 </html>

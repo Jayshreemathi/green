@@ -93,7 +93,9 @@
    cursor:pointer;
    
 }
-
+#full{
+  overflow: hidden;
+}
 
 .explore-btn:hover {
  letter-spacing: 3px;
@@ -237,6 +239,7 @@ transition:all 0.4s ease;
  min-height: 100vh; /* ✅ Add this */
   position: relative;
   
+ 
   transition: transform 0.3s ease-in-out;
 }
 
@@ -315,23 +318,7 @@ background-image: url(pexels-ella-olsson-572949-1640777.jpg);
 
 
 }
-/*.images p{
-    color:rgb(47, 46, 46);
-    width:100px;
-    text-align:center;
-}
-.images{
-    display:flex;
-    flex-wrap:wrap;
-    border: 2px solid grey;
-    padding:20px;
-    margin:20px;
-    width:400px;
-    height:200px;
-    gap:20px;
-    
-    
-}*/
+
 .images {
     display: flex;
     flex-direction: column;
@@ -341,7 +328,7 @@ background-image: url(pexels-ella-olsson-572949-1640777.jpg);
     margin: 20px auto;
     width: 90%;
     max-width: 400px;
-    height: auto; /* Let it grow based on content */
+    height: auto; 
     gap: 10px;
     word-wrap: break-word;
 }
@@ -422,10 +409,7 @@ width: 120%;
 
 }
 @media (max-width:500px){
-    .animatedimages{
-        
-        
-    }
+    
     #greener{
       position: relative;
       left:5%;
@@ -456,105 +440,161 @@ width: 120%;
     }
 }
 /*game*/
-
-.gamehead{
-  position: absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:10%;
-  background-color: rgb(7, 126, 7);
-}
-@media (max-width:500px){
-  .gamehead{
-    height:15%;
-  }
-}
-
-.gamecon{
-  position: absolute;
-  top:20%;
-  color:#07490a;
-  text-align: center;
-  width: 100%;
-  height:100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 2;
-  
-}
-.gamecon h3{
-  font-size: 30px;
-}
-.gamecon p{
-  font-size: 20px;
-}
 .game {
   width: 100%;
-  height: 100vh; /* ✅ Add this */
+  min-height: 100vh;
   position: relative;
-  
+  background-image: url("pexels-fwstudio-33348-164005.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   transition: transform 0.3s ease-in-out;
+  background-attachment:scroll;
 }
 
 .game.active {
   transform: translateX(-300px);
 }
-.gamecon input{
-  width:200px;
-  height:50px;
-  font-size:20px;
-  border:2px solid green;
-  
-  
-  padding: 0 10px;
-}
-.gamecon input::placeholder {
-  color:black; /* Or any color you want for placeholder text */
-}
-.gameimg {
- 
+
+.gamehead {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height:100vh;
-  position: relative;
-  top:70%;
+  height: 10%;
+  background-color: rgb(7, 126, 7);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
 }
-.gameimg img{
-  width:300px;
-  height:200px;
-  display: none;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(8, 145, 8, 0.484);
 
-
-}
-@media (max-width: 600px) {
-  .gameimg {
-    justify-content: center;
-    gap: 12px; /* or 8px if too wide */
-    top:80%;
+@media (max-width: 500px) {
+  .gamehead {
+    height: 15%;
   }
+  .game {
+    background-attachment: scroll; /* fixes mobile background issue */
+  }
+}
 
+.gamecon {
+  position: relative;
+  
+  color: #07490a;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 2;
+}
+
+.gamecon h3 {
+  font-size: 30px;
+  margin-top:10%;
+}
+
+.gamecon p {
+  font-size: 20px;
+  max-width: 600px;
+}
+
+.gamecon input {
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+  border: 2px solid green;
+  padding: 0 10px;
+  margin-top: 10px;
+}
+
+.gamecon input::placeholder {
+  color: black;
+}
+
+.gamecon button {
+  width: 120px;
+  padding: 10px 20px;
+  font-size: 18px;
+  color: white;
+  background-color: #e63946;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 10px 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.gamecon button:hover {
+  background-color: #c1121f;
+  transform: scale(1.05);
+}
+
+.gamecon button:active {
+  transform: scale(0.95);
+}
+
+.gameimg {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.gameimg .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.gameimg .item img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.gameimg .item img:hover {
+  transform: scale(1.1);
+}
+
+.gameimg p {
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #07490a;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
   .gameimg img {
     width: 45%;
+    height: auto;
   }
+  .gameimg p {
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  .gamecon h3 {
+  font-size: 30px;
+  margin-top:30%;
 }
-.gamecon button{
-  width:100px;
-  padding:10px 20px;
-  font-size: 20px;
-  color:white;
-  background-color: red;
-  border:none;
-  position: relative;
-  top:20px;
-  cursor:pointer;
-  border-radius:10px;
+.gamehead{
+  height:10%;
 }
+}
+
 .contactlist{
   width: 100%;
-  height:100vh;
+min-height:100vh;
+height:auto;
   position:relative;
   background-image: url(top-view-fresh-vegetables-composition-light-white-background.jpg);
   background-repeat: no-repeat;
@@ -643,4 +683,59 @@ cursor:pointer;
   }
   
 
+}
+
+
+
+/* View Reviews button */
+#viewReviewsBtn {
+  display: block;
+  margin: 20px auto;
+  
+  padding: 12px 25px;
+  font-size: 18px;
+  background: #3e9142;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#viewReviewsBtn:hover {
+  background: #2d6b30;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* Saved Data Section */
+.saved-data {
+  margin: 20px auto;
+  width: 80%;
+  max-width: 600px;
+  padding: 20px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.saved-data h2 {
+  font-size: 24px;
+  color: #07490a;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.saved-data ul {
+  list-style: none;
+  padding: 0;
+}
+
+.saved-data li {
+  background: #f9f9f9;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  border-left: 5px solid #3e9142;
 }
